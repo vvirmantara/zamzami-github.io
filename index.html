@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asvy Zamzami Nazkia | Professional Barista Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- AOS (Animate on Scroll) Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              coffee: {
+                50: '#fdf8f5',
+                100: '#fbeee6',
+                200: '#f5d5c3',
+                300: '#eebaa0',
+                400: '#e0875e',
+                500: '#d15e2a',
+                600: '#c44a1e',
+                700: '#a33614',
+                800: '#82270f',
+                900: '#4a1508',
+                950: '#1a0703',
+              },
+              dark: {
+                base: '#0f0c0b',
+                card: '#1a1412',
+                accent: '#2a1f1c',
+              },
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              serif: ['Cormorant Garamond', 'serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom dynamic typing animation */
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+      .typing-cursor::after {
+        content: '|';
+        animation: blink 0.7s infinite;
+      }
+      /* Custom Glassmorphism */
+      .glass-nav {
+        background: rgba(15, 12, 11, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(217, 119, 6, 0.1);
+      }
+      /* Active dot pulsing */
+      .pulse-accent {
+        box-shadow: 0 0 0 0 rgba(224, 135, 94, 0.7);
+        animation: pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+      }
+      @keyframes pulse {
+        to {
+          box-shadow: 0 0 0 10px rgba(224, 135, 94, 0);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-dark-base text-gray-200 font-sans selection:bg-coffee-500 selection:text-white overflow-x-hidden">
+    <!-- Background Coffee Beans Deco (Aesthetic blur effects) -->
+    <div class="fixed -top-40 -left-40 w-96 h-96 bg-coffee-900/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-10 -right-40 w-96 h-96 bg-coffee-800/10 rounded-full blur-[150px] pointer-events-none z-0"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center justify-between">
+        <a href="#home" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-coffee-600 to-coffee-400 flex items-center justify-center text-white shadow-lg shadow-coffee-900/50">
+            <i class="fa-solid fa-mug-hot text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+          </div>
+          <div>
+            <span class="font-serif font-bold text-xl tracking-wide text-white block leading-none">A.Z.N</span>
+            <span class="text-[10px] text-coffee-400 uppercase tracking-widest block mt-0.5">Professional Barista</span>
+          </div>
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="#home" class="text-coffee-300 hover:text-white transition-colors duration-200">Beranda</a>
+          <a href="#tentang" class="text-gray-400 hover:text-white transition-colors duration-200">Tentang Saya</a>
+          <a href="#pendidikan" class="text-gray-400 hover:text-white transition-colors duration-200">Pendidikan</a>
+          <a href="#pengalaman" class="text-gray-400 hover:text-white transition-colors duration-200">Pengalaman</a>
+          <a href="#projek" class="text-gray-400 hover:text-white transition-colors duration-200">Menu Spesial</a>
+          <a href="#kontak" class="bg-coffee-600 hover:bg-coffee-500 text-white px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-coffee-500/20">Kontak Saya</a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="menu-btn" class="md:hidden text-gray-300 focus:outline-none p-2" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Panel -->
+      <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-b border-coffee-900/40 px-6 py-6 space-y-4">
+        <a href="#home" class="mobile-link block text-gray-300 hover:text-coffee-400 text-lg py-1">Beranda</a>
+        <a href="#tentang" class="mobile-link block text-gray-300 hover:text-coffee-400 text-lg py-1">Tentang Saya</a>
+        <a href="#pendidikan" class="mobile-link block text-gray-300 hover:text-coffee-400 text-lg py-1">Pendidikan</a>
+        <a href="#pengalaman" class="mobile-link block text-gray-300 hover:text-coffee-400 text-lg py-1">Pengalaman</a>
+        <a href="#projek" class="mobile-link block text-gray-300 hover:text-coffee-400 text-lg py-1">Menu Spesial</a>
+        <a href="#kontak" class="mobile-link block bg-coffee-600 hover:bg-coffee-500 text-center text-white font-medium py-3 rounded-xl transition-colors duration-300">Hubungi Kontak</a>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
+      <!-- Hero Background Cover -->
+      <div class="absolute inset-0 z-0">
+        <img src="asvi.png" alt="Coffee Brew Background" class="w-full h-full object-cover opacity-[0.15] scale-105 filter grayscale transition-transform duration-[10s]" id="hero-bg" />
+        <div class="absolute inset-0 bg-gradient-to-t from-dark-base via-dark-base/80 to-transparent"></div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10 text-center flex flex-col items-center justify-center min-h-[calc(100vh-6rem)]">
+        <!-- Badge -->
+        <div class="inline-flex items-center space-x-2 bg-coffee-900/40 border border-coffee-700/30 px-4 py-1.5 rounded-full mb-6" data-aos="fade-down">
+          <span class="w-2 h-2 rounded-full bg-coffee-400 pulse-accent"></span>
+          <span class="text-xs font-semibold text-coffee-300 tracking-wider uppercase">Open for Collaboration & Brews</span>
+        </div>
+
+        <!-- Animated Typing Text & Name -->
+        <h2 class="text-sm md:text-md uppercase tracking-[0.25em] text-coffee-400 font-semibold mb-3" data-aos="fade-up" data-aos-delay="100">Portofolio Personal Branding</h2>
+        <h1 class="font-serif text-5xl md:text-8xl font-bold tracking-tight text-white mb-6" data-aos="fade-up" data-aos-delay="200">Asvy Zamzami Nazkia</h1>
+
+        <p class="text-xl md:text-2xl font-light text-gray-300 max-w-2xl leading-relaxed mb-8 h-8" data-aos="fade-up" data-aos-delay="300">
+          <span class="font-serif italic text-coffee-300 font-medium" id="typewriter-text"></span><span class="typing-cursor border-r-2 border-coffee-400 ml-1"></span>
+        </p>
+
+        <p class="text-sm md:text-base text-gray-400 max-w-xl mx-auto leading-relaxed mb-10" data-aos="fade-up" data-aos-delay="400">
+          Menghidupkan setiap cangkir kopi dengan dedikasi, seni, serta layanan terbaik untuk menciptakan pengalaman tak terlupakan bagi setiap penikmatnya.
+        </p>
+
+        <!-- Actions Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-4" data-aos="fade-up" data-aos-delay="500">
+          <a
+            href="#tentang"
+            class="w-full sm:w-auto px-8 py-4 rounded-full bg-coffee-600 hover:bg-coffee-500 text-white font-medium shadow-lg shadow-coffee-600/20 hover:shadow-coffee-500/40 transform hover:-translate-y-1 transition-all duration-300 text-center"
+          >
+            Kenali Saya Lebih Jauh
+          </a>
+          <a
+            href="#kontak"
+            class="w-full sm:w-auto px-8 py-4 rounded-full bg-dark-card hover:bg-dark-accent text-gray-300 border border-coffee-900/40 hover:border-coffee-700/50 font-medium transform hover:-translate-y-1 transition-all duration-300 text-center flex items-center justify-center gap-2"
+          >
+            <i class="fa-solid fa-paper-plane text-coffee-400"></i> Hubungi Kontak
+          </a>
+        </div>
+
+        <!-- Floating Scroll Down Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-xs text-gray-500 tracking-widest uppercase">
+          <span class="animate-bounce"><i class="fa-solid fa-chevron-down text-coffee-400 text-sm"></i></span>
+          Scroll untuk navigasi
+        </div>
+      </div>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="tentang" class="py-24 relative overflow-hidden bg-dark-card/50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <!-- Left Column: Custom Creative Coffee Graphic -->
+          <div class="lg:col-span-5 relative" data-aos="fade-right">
+            <!-- Glass Container with coffee image -->
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl border border-coffee-900/40 group">
+              <img src="asvi.png" alt="Asvy Barista Brew" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-dark-base/90 via-transparent to-transparent"></div>
+
+              <!-- Floating Quote Overlay on Picture -->
+              <div class="absolute bottom-6 left-6 right-6 bg-dark-card/90 border border-coffee-800/40 p-5 rounded-xl backdrop-blur-md">
+                <span class="text-xs text-coffee-400 uppercase tracking-widest font-bold block mb-1">Motto Barista</span>
+                <p class="text-sm font-serif italic text-white leading-relaxed">"Kopi yang baik bukan hanya tentang biji berkualitas, melainkan juga tentang ketulusan hati pembuatnya di balik meja bar."</p>
+              </div>
+            </div>
+            <!-- Decorative back frame -->
+            <div class="absolute -bottom-6 -left-6 w-full h-full border border-coffee-500/20 rounded-2xl -z-10"></div>
+          </div>
+
+          <!-- Right Column: Animated Structured Text -->
+          <div class="lg:col-span-7 space-y-8">
+            <div data-aos="fade-up">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-8 h-[1px] bg-coffee-500"></span>
+                <span class="text-xs font-bold text-coffee-400 uppercase tracking-widest">Tentang Saya</span>
+              </div>
+              <h3 class="font-serif text-3xl md:text-5xl font-bold text-white leading-tight">Menghadirkan Pengalaman Menikmati Kopi yang Sempurna</h3>
+            </div>
+
+            <!-- Polished Text Paragraphs -->
+            <div class="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed font-light" data-aos="fade-up" data-aos-delay="100">
+              <p>
+                Halo, saya <strong class="text-white font-semibold">Asvy Zamzami Nazkia</strong>, seorang barista profesional yang berdedikasi tinggi dan memiliki kecintaan mendalam pada keanekaragaman dunia kopi. Saat ini, saya aktif
+                berkarya di kedai kopi, di mana tanggung jawab utama saya mencakup penyajian minuman berstandar tinggi, menjamin kepuasan pelanggan secara prima, serta menjaga kerapian, kebersihan, dan efisiensi operasional bar.
+              </p>
+              <p>
+                Saya dianugerahi kemampuan komunikasi interpersonal yang hangat dan adaptabilitas tinggi di tengah lingkungan kerja yang dinamis. Dengan antusiasme membara, saya selalu konsisten mengeksplorasi teknik-teknik penyeduhan
+                modern maupun seni lukis latte art demi memberikan cita rasa terbaik bagi para pencinta kopi.
+              </p>
+            </div>
+
+            <!-- Key Skills List with Badges -->
+            <div class="pt-4 border-t border-coffee-900/40" data-aos="fade-up" data-aos-delay="200">
+              <h4 class="text-sm font-semibold uppercase tracking-wider text-coffee-300 mb-4">Keahlian & Karakter Utama:</h4>
+              <div class="flex flex-wrap gap-2.5">
+                <span class="px-4 py-2 bg-dark-accent border border-coffee-900/30 text-xs text-gray-300 rounded-full flex items-center gap-2 hover:border-coffee-500/50 transition-colors duration-300">
+                  <i class="fa-solid fa-mug-saucer text-coffee-400"></i> Brewing & Espresso Crafting
+                </span>
+                <span class="px-4 py-2 bg-dark-accent border border-coffee-900/30 text-xs text-gray-300 rounded-full flex items-center gap-2 hover:border-coffee-500/50 transition-colors duration-300">
+                  <i class="fa-solid fa-paint-brush text-coffee-400"></i> Latte Art Design
+                </span>
+                <span class="px-4 py-2 bg-dark-accent border border-coffee-900/30 text-xs text-gray-300 rounded-full flex items-center gap-2 hover:border-coffee-500/50 transition-colors duration-300">
+                  <i class="fa-solid fa-comments text-coffee-400"></i> Komunikasi & Pelayanan Pelanggan
+                </span>
+                <span class="px-4 py-2 bg-dark-accent border border-coffee-900/30 text-xs text-gray-300 rounded-full flex items-center gap-2 hover:border-coffee-500/50 transition-colors duration-300">
+                  <i class="fa-solid fa-shield-halved text-coffee-400"></i> Kebersihan & Manajemen Higiene
+                </span>
+                <span class="px-4 py-2 bg-dark-accent border border-coffee-900/30 text-xs text-gray-300 rounded-full flex items-center gap-2 hover:border-coffee-500/50 transition-colors duration-300">
+                  <i class="fa-solid fa-bolt text-coffee-400"></i> Adaptasi Cepat & Gesit
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="pendidikan" class="py-24 relative">
+      <div class="max-w-5xl mx-auto px-6 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <div class="flex items-center justify-center gap-2 mb-2">
+            <span class="w-8 h-[1px] bg-coffee-500"></span>
+            <span class="text-xs font-bold text-coffee-400 uppercase tracking-widest">Riwayat Akademis</span>
+            <span class="w-8 h-[1px] bg-coffee-500"></span>
+          </div>
+          <h3 class="font-serif text-3xl md:text-5xl font-bold text-white">Pendidikan Saya</h3>
+          <p class="text-sm text-gray-400 mt-3 leading-relaxed">Fondasi kuat pembentukan karakter, kedisiplinan, nilai spiritual, dan pengetahuan umum yang membentuk integritas kerja profesional saya saat ini.</p>
+        </div>
+
+        <!-- Vertical Timeline Layout -->
+        <div class="relative border-l-2 border-coffee-900/60 ml-4 md:ml-32 pl-8 space-y-12">
+          <!-- School 1: SMA (MA) -->
+          <div class="relative" data-aos="fade-up">
+            <!-- Dot marker -->
+            <span class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-dark-base border-2 border-coffee-400 flex items-center justify-center text-[10px] text-coffee-400">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <!-- Time Badge (Desktop Left Absolute placement replacement in responsive timeline) -->
+            <div class="md:absolute md:-left-[152px] md:top-1 bg-coffee-950 border border-coffee-800/40 text-coffee-300 text-xs font-semibold px-3 py-1 rounded-md mb-3 inline-block">Madrasah Aliyah</div>
+            <!-- Card Body -->
+            <div class="bg-dark-card border border-coffee-900/40 p-6 rounded-xl hover:border-coffee-600/30 transition-all duration-300 shadow-lg">
+              <h4 class="font-serif text-xl md:text-2xl font-semibold text-white">MA Mathla'ul Anwar Binuangen</h4>
+              <p class="text-xs text-coffee-400 font-medium uppercase mt-1">Lebak, Banten</p>
+              <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+                Sebuah institusi pendidikan menengah atas yang mendedikasikan diri pada mutu pendidikan terbaik di Kabupaten Lebak. Mengusung konsep keselarasan ilmu pengetahuan dan nilai keagamaan yang seimbang, lembaga ini fokus
+                melahirkan lulusan cerdas, kreatif, berkarakter Islami, dan siap melanjutkan ke jenjang pendidikan tinggi maupun berkontribusi aktif di masyarakat.
+              </p>
+            </div>
+          </div>
+
+          <!-- School 2: SMP -->
+          <div class="relative" data-aos="fade-up" data-aos-delay="100">
+            <!-- Dot marker -->
+            <span class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-dark-base border-2 border-coffee-500/60 flex items-center justify-center text-[10px] text-coffee-500/60">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <!-- Time Badge -->
+            <div class="md:absolute md:-left-[152px] md:top-1 bg-coffee-950 border border-coffee-800/40 text-coffee-400 text-xs font-semibold px-3 py-1 rounded-md mb-3 inline-block">Sekolah Menengah</div>
+            <!-- Card Body -->
+            <div class="bg-dark-card border border-coffee-900/40 p-6 rounded-xl hover:border-coffee-600/30 transition-all duration-300 shadow-lg">
+              <h4 class="font-serif text-xl md:text-2xl font-semibold text-white">SMP IT Al-Qudwah 2 Malingping</h4>
+              <p class="text-xs text-coffee-400 font-medium uppercase mt-1">Lebak, Banten</p>
+              <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+                Sekolah berstandar Islam Terpadu yang mendedikasikan diri pada pencapaian mutu pendidikan terbaik di Kabupaten Lebak. Mengusung konsep <span class="italic text-coffee-300">Integrated Islamic School</span>, lembaga ini
+                mensinergikan pendidikan intelektual dan pembinaan spiritual dalam lingkungan kondusif guna mencetak lulusan kreatif, mandiri, dan berkarakter Islami.
+              </p>
+            </div>
+          </div>
+
+          <!-- School 3: SD -->
+          <div class="relative" data-aos="fade-up" data-aos-delay="200">
+            <!-- Dot marker -->
+            <span class="absolute -left-[41px] top-1.5 w-6 h-6 rounded-full bg-dark-base border-2 border-coffee-500/60 flex items-center justify-center text-[10px] text-coffee-500/60">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <!-- Time Badge -->
+            <div class="md:absolute md:-left-[152px] md:top-1 bg-coffee-950 border border-coffee-800/40 text-coffee-400 text-xs font-semibold px-3 py-1 rounded-md mb-3 inline-block">Pendidikan Dasar</div>
+            <!-- Card Body -->
+            <div class="bg-dark-card border border-coffee-900/40 p-6 rounded-xl hover:border-coffee-600/30 transition-all duration-300 shadow-lg">
+              <h4 class="font-serif text-xl md:text-2xl font-semibold text-white">SD Negeri 2 Malingping Selatan</h4>
+              <p class="text-xs text-coffee-400 font-medium uppercase mt-1">Lebak, Banten</p>
+              <p class="text-sm text-gray-400 mt-3 leading-relaxed">
+                Lembaga pendidikan dasar yang terletak di bagian selatan Provinsi Banten. Berperan penting dalam memberikan pondasi awal belajar anak-anak di daerah Malingping, dengan fokus pembentukan karakter dasar, kedisiplinan,
+                pengenalan moralitas, serta pengetahuan umum yang terstruktur.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="pengalaman" class="py-24 bg-dark-card/30 relative">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <!-- Left Details -->
+          <div class="lg:col-span-5 space-y-6" data-aos="fade-right">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-8 h-[1px] bg-coffee-500"></span>
+              <span class="text-xs font-bold text-coffee-400 uppercase tracking-widest">Pengalaman Kerja</span>
+            </div>
+            <h3 class="font-serif text-3xl md:text-5xl font-bold text-white leading-tight">Rekam Jejak Profesional</h3>
+            <p class="text-gray-400 text-base md:text-lg leading-relaxed font-light">Mengasah keahlian taktis dalam dunia penyajian kopi dan manajemen operasional harian kafe secara konsisten dan teruji.</p>
+
+            <!-- Counter / Highlight metric box -->
+            <div class="p-6 bg-dark-card border border-coffee-900/40 rounded-2xl flex items-center space-x-4">
+              <div class="w-14 h-14 rounded-xl bg-coffee-900/50 border border-coffee-700/30 flex items-center justify-center text-coffee-400 text-2xl font-bold">2+</div>
+              <div>
+                <span class="text-white font-medium block">Tahun Pengalaman</span>
+                <span class="text-xs text-gray-400">Penyajian kopi & operasi bar modern</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Card: Experience Details of Cafe Hyang Ngupi Di Mang Daenk -->
+          <div class="lg:col-span-7" data-aos="fade-left">
+            <div class="bg-gradient-to-br from-dark-card to-dark-accent p-8 rounded-2xl border border-coffee-800/30 shadow-2xl relative overflow-hidden group">
+              <!-- Abstract overlay glow -->
+              <div class="absolute -right-20 -top-20 w-40 h-40 bg-coffee-600/5 rounded-full blur-3xl group-hover:bg-coffee-600/10 transition-colors duration-500"></div>
+
+              <!-- Header Experience -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-coffee-900/40 pb-6">
+                <div>
+                  <span class="text-xs font-bold text-coffee-400 uppercase tracking-widest block mb-1">Barista Profesional</span>
+                  <h4 class="font-serif text-2xl md:text-3xl font-bold text-white">Cafe Hyang Ngupi Di Mang Daenk</h4>
+                  <span class="text-xs text-gray-400 flex items-center gap-1.5 mt-1"> <i class="fa-solid fa-location-dot text-coffee-500"></i> Serang, Banten </span>
+                </div>
+                <div class="bg-coffee-900/30 border border-coffee-700/40 text-coffee-300 text-xs font-semibold px-4 py-2 rounded-full self-start sm:self-center">2024 — Sekarang (2026)</div>
+              </div>
+
+              <!-- Job Descriptions -->
+              <p class="text-gray-300 text-base mb-6 leading-relaxed font-light">
+                Aktif mengelola operasional bar dan menyajikan produk kopi premium berkualitas tinggi dengan fokus utama pada pemeliharaan mesin, keselarasan ekstraksi kopi, kenyamanan bar, serta jaminan pengalaman tak terlupakan bagi
+                setiap pelanggan yang berkunjung.
+              </p>
+
+              <!-- Key Responsibilities checklist -->
+              <h5 class="text-sm font-semibold uppercase tracking-wider text-coffee-300 mb-4">Poin Kontribusi & Keahlian:</h5>
+              <ul class="space-y-3.5 text-sm text-gray-300">
+                <li class="flex items-start gap-3">
+                  <span class="w-5 h-5 rounded-full bg-coffee-900/50 flex items-center justify-center text-coffee-400 mt-0.5 text-xs">
+                    <i class="fa-solid fa-check"></i>
+                  </span>
+                  <span>Menyajikan ragam menu espresso, milk beverages, dan signature menu dengan kontrol rasa yang presisi.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-5 h-5 rounded-full bg-coffee-900/50 flex items-center justify-center text-coffee-400 mt-0.5 text-xs">
+                    <i class="fa-solid fa-check"></i>
+                  </span>
+                  <span>Mengoperasikan alat kopi modern (Grinder, Commercial Espresso Machine, dll.) serta melakukan kalibrasi harian.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-5 h-5 rounded-full bg-coffee-900/50 flex items-center justify-center text-coffee-400 mt-0.5 text-xs">
+                    <i class="fa-solid fa-check"></i>
+                  </span>
+                  <span>Melatih kemampuan komunikasi interpersonal kuat guna menyambut pelanggan dengan ramah dan penuh kehangatan.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="w-5 h-5 rounded-full bg-coffee-900/50 flex items-center justify-center text-coffee-400 mt-0.5 text-xs">
+                    <i class="fa-solid fa-check"></i>
+                  </span>
+                  <span>Menjaga manajemen bar secara efisien, stok bahan, kepatuhan kebersihan kafe, dan konsistensi pelayanan.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projek" class="py-24 relative">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <div class="flex items-center justify-center gap-2 mb-2">
+            <span class="w-8 h-[1px] bg-coffee-500"></span>
+            <span class="text-xs font-bold text-coffee-400 uppercase tracking-widest">Karya & Eksperimen</span>
+            <span class="w-8 h-[1px] bg-coffee-500"></span>
+          </div>
+          <h3 class="font-serif text-3xl md:text-5xl font-bold text-white">Menu Spesial & Projek</h3>
+          <p class="text-sm text-gray-400 mt-3 leading-relaxed">Eksplorasi kreasi resep minuman kopi premium andalan saya yang disajikan dengan keahlian teknis dan dedikasi rasa tinggi.</p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1: Kopi Susu Spesial Daenk -->
+          <div class="bg-dark-card border border-coffee-900/40 rounded-2xl overflow-hidden group hover:border-coffee-500/40 transition-all duration-300 flex flex-col h-full shadow-lg hover:-translate-y-1" data-aos="fade-up">
+            <div class="relative overflow-hidden aspect-video">
+              <img src="kopi susu 1.jfif" alt="Kopi Susu Spesial Daenk" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+              <span class="absolute top-4 right-4 bg-coffee-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full"> Signature Menu </span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h4 class="font-serif text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-coffee-300 transition-colors duration-200">Kopi Susu Spesial Daenk</h4>
+              <p class="text-sm text-gray-400 leading-relaxed mb-6 flex-grow">
+                Signature drink yang diracik khusus menggunakan espresso premium berbasis biji kopi pilihan, dipadukan susu segar yang lembut dan pemanis khas dari Cafe Hyang Ngupi Di Mang Daenk. Rasio racikan disesuaikan dengan presisi
+                tinggi demi menghasilkan rasa manis seimbang dengan cita rasa espresso yang tegas.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-coffee-900/40">
+                <span class="text-[11px] text-coffee-400 uppercase font-semibold tracking-widest"><i class="fa-solid fa-mug-saucer mr-1.5"></i> Espresso Based</span>
+                <span class="text-[11px] text-gray-500 font-medium">Karya Barista</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Latte Art -->
+          <div
+            class="bg-dark-card border border-coffee-900/40 rounded-2xl overflow-hidden group hover:border-coffee-500/40 transition-all duration-300 flex flex-col h-full shadow-lg hover:-translate-y-1"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="relative overflow-hidden aspect-video">
+              <img src="late 1.jpg" alt="Latte Art" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+              <span class="absolute top-4 right-4 bg-coffee-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full"> Visual Artistry </span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h4 class="font-serif text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-coffee-300 transition-colors duration-200">Latte Art</h4>
+              <p class="text-sm text-gray-400 leading-relaxed mb-6 flex-grow">
+                Keindahan visual yang diekspresikan di atas cangkir kopi. Penguasaan teknik pembuihan susu (*milk frothing*) yang mumpuni untuk menghasilkan mikro-foam mengkilap (*glossy micro-foam*), dipadukan kelihaian menuang (*free
+                pouring*) untuk melukis berbagai pola klasik nan indah seperti Rosetta, Tulip, dan Swan.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-coffee-900/40">
+                <span class="text-[11px] text-coffee-400 uppercase font-semibold tracking-widest"><i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Milk Pouring</span>
+                <span class="text-[11px] text-gray-500 font-medium">Aesthetic Standard</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Strawberry Mochaccino -->
+          <div
+            class="bg-dark-card border border-coffee-900/40 rounded-2xl overflow-hidden group hover:border-coffee-500/40 transition-all duration-300 flex flex-col h-full shadow-lg hover:-translate-y-1"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="relative overflow-hidden aspect-video">
+              <img src="stwabery 1.jfif" alt="Strawberry Mochaccino" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+              <span class="absolute top-4 right-4 bg-coffee-600 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full"> Fusion Beverage </span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h4 class="font-serif text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-coffee-300 transition-colors duration-200">Strawberry Mochaccino</h4>
+              <p class="text-sm text-gray-400 leading-relaxed mb-6 flex-grow">
+                Sebuah kreasi eksperimental yang memadukan kesegaran buah stroberi dengan kelezatan cokelat gelap murni, berpadu sempurna dalam espresso espresso shot yang mantap. Menciptakan gradasi rasa manis, gurih, pahit yang unik dan
+                sangat disukai penikmat rasa kopi kontemporer yang menyegarkan.
+              </p>
+              <div class="flex items-center justify-between pt-4 border-t border-coffee-900/40">
+                <span class="text-[11px] text-coffee-400 uppercase font-semibold tracking-widest"><i class="fa-solid fa-seedling mr-1.5"></i> Flavor Crafting</span>
+                <span class="text-[11px] text-gray-500 font-medium">Best Seller</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Fun Section: Interactive Brew Profiler -->
+    <section class="py-16 bg-dark-card/40 relative">
+      <div class="max-w-4xl mx-auto px-6 text-center relative z-10" data-aos="fade-up">
+        <div class="inline-flex items-center justify-center p-3 bg-coffee-900/40 rounded-full border border-coffee-800/40 mb-4">
+          <i class="fa-solid fa-gamepad text-coffee-400 text-xl"></i>
+        </div>
+        <h4 class="font-serif text-3xl font-bold text-white mb-2">Butuh Rekomendasi Kopi Hari Ini?</h4>
+        <p class="text-sm text-gray-400 max-w-lg mx-auto mb-8">Gunakan simulator kecil buatan saya ini untuk menemukan jenis minuman kopi yang pas dengan mood atau preferensi rasa Anda sekarang!</p>
+
+        <!-- Custom Interactive Card Widget -->
+        <div class="bg-dark-card p-6 md:p-8 rounded-2xl border border-coffee-800/40 max-w-xl mx-auto text-left">
+          <!-- Selectors -->
+          <div class="mb-6">
+            <label class="text-xs font-semibold uppercase tracking-wider text-coffee-300 block mb-2">Bagaimana mood Anda saat ini?</label>
+            <div class="grid grid-cols-3 gap-2" id="mood-selector">
+              <button onclick="selectChoice('mood', 'santai', this)" class="choice-btn px-3 py-2 bg-dark-accent border border-coffee-900/60 text-xs rounded-xl text-center text-gray-400 hover:text-white transition-all duration-300">
+                Santai / Chill
+              </button>
+              <button onclick="selectChoice('mood', 'ngantuk', this)" class="choice-btn px-3 py-2 bg-dark-accent border border-coffee-900/60 text-xs rounded-xl text-center text-gray-400 hover:text-white transition-all duration-300">
+                Sangat Ngantuk
+              </button>
+              <button onclick="selectChoice('mood', 'eksotis', this)" class="choice-btn px-3 py-2 bg-dark-accent border border-coffee-900/60 text-xs rounded-xl text-center text-gray-400 hover:text-white transition-all duration-300">
+                Ingin Rasa Unik
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="text-xs font-semibold uppercase tracking-wider text-coffee-300 block mb-2">Preferensi Rasa Utama?</label>
+            <div class="grid grid-cols-3 gap-2" id="flavor-selector">
+              <button onclick="selectChoice('flavor', 'manis', this)" class="choice-btn px-3 py-2 bg-dark-accent border border-coffee-900/60 text-xs rounded-xl text-center text-gray-400 hover:text-white transition-all duration-300">
+                Manis & Lembut
+              </button>
+              <button onclick="selectChoice('flavor', 'pahit', this)" class="choice-btn px-3 py-2 bg-dark-accent border border-coffee-900/60 text-xs rounded-xl text-center text-gray-400 hover:text-white transition-all duration-300">
+                Pahit & Kuat
+              </button>
+              <button onclick="selectChoice('flavor', 'asam-buah', this)" class="choice-btn px-3 py-2 bg-dark-accent border border-coffee-900/60 text-xs rounded-xl text-center text-gray-400 hover:text-white transition-all duration-300">
+                Asam / Buah Segar
+              </button>
+            </div>
+          </div>
+
+          <!-- Action & Result Panel -->
+          <button onclick="generateRecommendation()" class="w-full py-3.5 bg-coffee-600 hover:bg-coffee-500 text-white font-medium rounded-xl text-sm tracking-wide transition-colors duration-300 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-mug-hot"></i> Dapatkan Rekomendasi
+          </button>
+
+          <!-- Recommendation Result Box (Hidden until clicked) -->
+          <div id="recommendation-result" class="hidden mt-6 p-4 bg-coffee-950/40 border border-coffee-800/30 rounded-xl flex items-center gap-4 transition-all duration-500 animate-fadeIn">
+            <div class="w-12 h-12 bg-coffee-900/50 rounded-lg flex items-center justify-center text-coffee-400 text-xl" id="result-icon">
+              <i class="fa-solid fa-mug-hot"></i>
+            </div>
+            <div>
+              <span class="text-[10px] text-coffee-400 uppercase tracking-widest block font-bold">Rekomendasi Barista:</span>
+              <h5 class="text-md font-bold text-white mt-0.5" id="result-title">Menu Kopi</h5>
+              <p class="text-xs text-gray-400 mt-1" id="result-desc">Deskripsi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="py-24 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+          <!-- Left Details: Information Cards -->
+          <div class="lg:col-span-5 space-y-8" data-aos="fade-right">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="w-8 h-[1px] bg-coffee-500"></span>
+                <span class="text-xs font-bold text-coffee-400 uppercase tracking-widest">Kontak Saya</span>
+              </div>
+              <h3 class="font-serif text-3xl md:text-5xl font-bold text-white leading-tight">Mari Berdiskusi & Berkolaborasi</h3>
+              <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                Tertarik untuk berkolaborasi, mengundang saya sebagai barista tamu (*guest barista*), konsultasi setup kafe, atau sekadar bertukar wawasan tentang dunia kopi? Silakan hubungi saya kapan saja!
+              </p>
+            </div>
+
+            <!-- Contact Cards list -->
+            <div class="space-y-4">
+              <!-- Card WhatsApp -->
+              <a href="https://wa.me/6283837072779" target="_blank" class="block p-5 bg-dark-card border border-coffee-900/40 rounded-2xl hover:border-emerald-500/40 hover:bg-emerald-950/10 transition-all duration-300 group shadow-lg">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-gray-400 uppercase font-bold tracking-wider block">WhatsApp Chat</span>
+                    <span class="text-sm md:text-md text-white font-semibold tracking-wide">0838-3707-2779</span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Card Email -->
+              <a href="mailto:Aspizamzami@gmail.com" class="block p-5 bg-dark-card border border-coffee-900/40 rounded-2xl hover:border-coffee-500/40 hover:bg-coffee-950/20 transition-all duration-300 group shadow-lg">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-coffee-500/10 border border-coffee-500/30 flex items-center justify-center text-coffee-400 text-xl group-hover:scale-105 transition-transform duration-300">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-gray-400 uppercase font-bold tracking-wider block">Kirim Surel / Email</span>
+                    <span class="text-sm md:text-md text-white font-semibold tracking-wide">Aspizamzami@gmail.com</span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- Card Alamat -->
+              <div class="p-5 bg-dark-card border border-coffee-900/40 rounded-2xl shadow-lg">
+                <div class="flex items-center space-x-4">
+                  <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-gray-400 uppercase font-bold tracking-wider block">Lokasi / Domisili</span>
+                    <span class="text-sm md:text-md text-white font-semibold">Cipocok Jaya, Kota Serang</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Details: Interactive Mock Form and Action -->
+          <div class="lg:col-span-7" data-aos="fade-left">
+            <div class="bg-dark-card p-8 rounded-3xl border border-coffee-900/40 shadow-2xl relative">
+              <h4 class="font-serif text-2xl font-bold text-white mb-6">Tinggalkan Pesan Langsung</h4>
+
+              <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2" for="form-name">Nama Lengkap</label>
+                    <input
+                      type="text"
+                      id="form-name"
+                      required
+                      class="w-full px-4 py-3 bg-dark-accent border border-coffee-900/40 focus:border-coffee-500/70 text-sm rounded-xl text-white outline-none transition-colors duration-300"
+                      placeholder="Masukkan nama Anda"
+                    />
+                  </div>
+                  <div>
+                    <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2" for="form-subject">Topik Pembicaraan</label>
+                    <input
+                      type="text"
+                      id="form-subject"
+                      required
+                      class="w-full px-4 py-3 bg-dark-accent border border-coffee-900/40 focus:border-coffee-500/70 text-sm rounded-xl text-white outline-none transition-colors duration-300"
+                      placeholder="Contoh: Kerja Sama / Konsultasi"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="text-xs font-bold uppercase tracking-wider text-gray-400 block mb-2" for="form-message">Isi Pesan Anda</label>
+                  <textarea
+                    id="form-message"
+                    rows="4"
+                    required
+                    class="w-full px-4 py-3 bg-dark-accent border border-coffee-900/40 focus:border-coffee-500/70 text-sm rounded-xl text-white outline-none transition-colors duration-300 resize-none"
+                    placeholder="Tulis rincian pesan kerja sama atau sapaan hangat di sini..."
+                  ></textarea>
+                </div>
+
+                <!-- Mock Success Toast inside form -->
+                <div id="form-success-toast" class="hidden p-4 bg-emerald-950/20 border border-emerald-500/30 text-emerald-400 rounded-xl text-xs flex items-center gap-2">
+                  <i class="fa-solid fa-check-circle"></i>
+                  Pesan Anda siap dikirimkan via WhatsApp. Klik tombol Kirim di bawah ini untuk memulai chat.
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full py-4 bg-coffee-600 hover:bg-coffee-500 text-white font-medium rounded-xl text-sm uppercase tracking-wider transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg shadow-coffee-600/10 hover:shadow-coffee-500/30"
+                >
+                  <i class="fa-solid fa-paper-plane"></i> Kirim ke WhatsApp Saya
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark-base border-t border-coffee-900/30 py-12 relative">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-full bg-coffee-600/30 border border-coffee-500/30 flex items-center justify-center text-coffee-400">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div>
+            <span class="font-serif font-bold text-lg text-white block">Asvy Zamzami Nazkia</span>
+            <span class="text-[10px] text-gray-500 uppercase tracking-widest block">Barista Profesional</span>
+          </div>
+        </div>
+
+        <!-- Footer Quote or signature -->
+        <p class="text-xs text-gray-500 text-center italic md:text-left max-w-sm">"Brewing cup by cup, creating stories that last."</p>
+
+        <!-- Copyright and socials -->
+        <div class="flex flex-col items-center md:items-end gap-2">
+          <div class="flex items-center space-x-4 text-gray-400">
+            <a href="https://wa.me/6283837072779" target="_blank" class="hover:text-emerald-400 transition-colors duration-200" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+            <a href="mailto:Aspizamzami@gmail.com" class="hover:text-coffee-400 transition-colors duration-200" aria-label="Email"><i class="fa-solid fa-envelope text-lg"></i></a>
+          </div>
+          <span class="text-[10px] text-gray-600 tracking-wider"> &copy; 2026 Asvy Zamzami Nazkia. All Rights Reserved. </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- AOS Library Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100,
+        easing: 'ease-out-cubic',
+      });
+
+      // Interactive Burger Menu Logic
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-link');
+
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Typewriter Text Data & Animation Loop
+      const words = ['Barista Profesional di Cafe Hyang Ngupi', 'Ahli di Bidang Espresso & Latte Art', 'Penyaji Cita Rasa Kopi Berkualitas Tinggi'];
+      let wordIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const typewriterEl = document.getElementById('typewriter-text');
+
+      function type() {
+        const currentWord = words[wordIndex];
+        if (isDeleting) {
+          // Deleting state
+          typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          // Typing state
+          typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let typingSpeed = isDeleting ? 40 : 100;
+
+        if (!isDeleting && charIndex === currentWord.length) {
+          // Pause at the end of word
+          typingSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          typingSpeed = 500;
+        }
+
+        setTimeout(type, typingSpeed);
+      }
+
+      // Start typewriter on window load
+      window.onload = function () {
+        type();
+      };
+
+      // Custom Recommendation Widget Logic
+      const selections = {
+        mood: null,
+        flavor: null,
+      };
+
+      function selectChoice(category, value, element) {
+        // Reset active styles inside category container
+        const container = element.parentElement;
+        const buttons = container.querySelectorAll('.choice-btn');
+        buttons.forEach((btn) => {
+          btn.classList.remove('bg-coffee-600', 'text-white', 'border-coffee-500');
+          btn.classList.add('bg-dark-accent', 'text-gray-400', 'border-coffee-900/60');
+        });
+
+        // Set chosen values and add styles
+        selections[category] = value;
+        element.classList.remove('bg-dark-accent', 'text-gray-400', 'border-coffee-900/60');
+        element.classList.add('bg-coffee-600', 'text-white', 'border-coffee-500');
+      }
+
+      function generateRecommendation() {
+        const resultBox = document.getElementById('recommendation-result');
+        const resultTitle = document.getElementById('result-title');
+        const resultDesc = document.getElementById('result-desc');
+        const resultIcon = document.getElementById('result-icon');
+
+        if (!selections.mood || !selections.flavor) {
+          // Quick validation reminder
+          resultBox.classList.remove('hidden');
+          resultIcon.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-400"></i>`;
+          resultTitle.textContent = 'Pilihan Belum Lengkap';
+          resultDesc.textContent = 'Silakan pilih salah satu opsi mood dan preferensi rasa terlebih dahulu.';
+          return;
+        }
+
+        let title = '';
+        let desc = '';
+        let icon = `<i class="fa-solid fa-mug-hot"></i>`;
+
+        // Matching logic matrices
+        if (selections.mood === 'santai' && selections.flavor === 'manis') {
+          title = 'Strawberry Mochaccino';
+          desc = 'Sangat cocok dinikmati perlahan sambil bersantai menikmati sore hari.';
+          icon = `<i class="fa-solid fa-ice-cream text-pink-400"></i>`;
+        } else if (selections.mood === 'santai' && selections.flavor === 'pahit') {
+          title = 'Cappuccino Klasik';
+          desc = 'Menyeimbangkan kelembutan buih susu dengan intensitas espresso murni.';
+          icon = `<i class="fa-solid fa-mug-saucer text-amber-500"></i>`;
+        } else if (selections.mood === 'ngantuk' && selections.flavor === 'pahit') {
+          title = 'Double Shot Espresso';
+          desc = 'Tendangan energi instan untuk memulihkan fokus Anda seketika.';
+          icon = `<i class="fa-solid fa-bolt text-amber-600"></i>`;
+        } else if (selections.mood === 'ngantuk' && selections.flavor === 'manis') {
+          title = 'Kopi Susu Spesial Daenk (Ekstra Shot)';
+          desc = 'Kombinasi rasa manis legit yang menyegarkan dengan suntikan stamina kafein.';
+          icon = `<i class="fa-solid fa-glass-water text-coffee-400"></i>`;
+        } else if (selections.mood === 'eksotis' && selections.flavor === 'asam-buah') {
+          title = 'Single Origin V60 (Sunda Aromanis)';
+          desc = 'Pilihan seduh manual beraroma buah nangka dan madu yang memanjakan lidah.';
+          icon = `<i class="fa-solid fa-flask text-emerald-400"></i>`;
+        } else {
+          // Fallbacks and default recommendations
+          title = 'Latte Art Macchiato';
+          desc = 'Cita rasa susu seimbang dengan kreasi gambar latte art estetik buatan saya.';
+          icon = `<i class="fa-solid fa-feather text-amber-300"></i>`;
+        }
+
+        resultIcon.innerHTML = icon;
+        resultTitle.textContent = title;
+        resultDesc.textContent = desc;
+
+        resultBox.classList.remove('hidden');
+      }
+
+      // WhatsApp Form Submission Handler
+      function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('form-name').value;
+        const subject = document.getElementById('form-subject').value;
+        const message = document.getElementById('form-message').value;
+        const toast = document.getElementById('form-success-toast');
+
+        // Format message template for WhatsApp
+        const textMessage = `Halo Asvy, saya *${name}* tertarik berdiskusi mengenai *${subject}*:\n\n"${message}"`;
+        const encodedText = encodeURIComponent(textMessage);
+        const whatsappUrl = `https://wa.me/6283837072779?text=${encodedText}`;
+
+        // Show informative toast
+        toast.classList.remove('hidden');
+
+        // Redirect smoothly to WhatsApp web/app after brief delay
+        setTimeout(() => {
+          window.open(whatsappUrl, '_blank');
+        }, 1200);
+      }
+    </script>
+  </body>
+</html>
